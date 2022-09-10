@@ -1,0 +1,37 @@
+{% extends '../base_paginas.html' %} {% load static %} {% block titulo_pagina %}
+<h1>Personas</h1>
+{% endblock %} {% block boton_nuevo %}
+<input type="button" id="btnCreate" onclick="btnCreate('crearpersona', 'Crear persona', 'Crear')" class="btn btn-success" value="Crear persona"> {% endblock %} {% block cabecera_tabla %}
+<th scope="col">#</th>
+<th scope="col">Nombre</th>
+<th scope="col">Apellido</th>
+<th scope="col">Tipo de documento</th>
+<th scope="col">Número de documento</th>
+<th scope="col">Lugar de residencia</th>
+<th scope="col">Fecha de nacimiento</th>
+<th scope="col">Email</th>
+<th scope="col">Teléfono</th>
+<th scope="col">Usuario</th>
+<th scope="col">Contraseña</th>
+<th scope="col">Accion</th>
+{% endblock %} {% block cuerpo_tabla %} {%if personas %} {% for persona in personas %}
+<tr id="tr-personas-{{persona.id}}">
+    <th scope="row">{{forloop.counter}}</th>
+    <td id="tr-nombre-{{persona.id}}">{{persona.nombres}}</td>
+    <td id="tr-apllido-{{persona.id}}">{{persona.apellidos}}</td>
+    <td id="tr-tipo-documento-{{persona.id}}">{{persona.tipo_documento}}</td>
+    <td id="tr-numero-documento-{{persona.id}}">{{persona.numero_documento}}</td>
+    <td id="tr-lugar-residencia-{{persona.id}}">{{persona.lugar_residencia}}</td>
+    <td id="tr-fecha-nacimiento-{{persona.id}}">{{persona.fecha_nacimiento}}</td>
+    <td id="tr-email-{{persona.id}}">{{persona.email}}</td>
+    <td id="tr-telefono-{{persona.id}}">{{persona.telefono}}</td>
+    <td id="tr-usuario-{{persona.id}}">{{persona.usuario}}</td>
+    <td id="tr-contrasena-{{persona.id}}">{{persona.password}}</td>
+    <td>
+        <div>
+            <input type="button" value="Actualizar" onclick="btnUpdate('{{persona.id}}','actualizarpersona', 'Actualizar persona', 'Actualizar')">
+            <input type="button" value="Eliminar" onclick="btnDelete('{{persona.id}}', 'eliminarpersona')" ">
+        </div>
+    </td>
+</tr>
+{% endfor %} {% endif %} {% endblock %}
